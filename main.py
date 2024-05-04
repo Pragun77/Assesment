@@ -2,8 +2,8 @@ import requests
 from bs4 import BeautifulSoup
 import re
 import openai
-from openai import OpenAI
 from googleapiclient.discovery import build
+
 
 
 SPREADSHEET_ID = '1alCKvTGH_47wJBNnCqY7ALn7Gvq6k6O0M8Pl5a3ygfg'
@@ -11,6 +11,8 @@ RANGE_NAME_1 = 'Target Company Data!A1:B47'
 RANGE_NAME_2 = 'Prompts!A1:C2'
 GOOGLE_API_KEY = 'AIzaSyDDBXC4Lnie2AjkCG0d9-qf5npcoX44xls'
 OPENAI_API_KEY = 'Your OpenAI API Key'
+
+
 
 
 
@@ -51,10 +53,10 @@ def fetch_data_from_google_sheets(spreadsheet_id , range_name):
 def OpenAI_Outputs(prompt1):
 
     openai.api_key = OPENAI_API_KEY
-    
     outputs = []
 
     prompt_1 = prompt1
+
     
     output_1 = openai.Completion.create(
         engine="text-davinci-003",
@@ -62,14 +64,14 @@ def OpenAI_Outputs(prompt1):
         max_tokens=100
     )
     
-    prompt_2 = output_1
+    prompt_2 = output_1.text
     
     output_2 = openai.Completion.create(
         engine="text-davinci-003",
         prompt=prompt_2,
         max_tokens=100
     )
-    prompt_3 = output_1 + output_2
+    prompt_3 = output_1.text + output_2.text
 
     output_3 = openai.Completion.create(
         engine="text-davinci-003",
