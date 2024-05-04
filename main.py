@@ -111,8 +111,7 @@ def update_spreadsheet(values):
 if __name__ == '__main__':
     company_data = fetch_data_from_google_sheets(spreadsheet_id= SPREADSHEET_ID, range_name=RANGE_NAME_1)
     
-    values = [['Company Name', 'Company URL', 'Scraped and Formatted Homepage Data', 
-               'Output from Prompt 1', 'Output from Prompt 2', 'Output from Prompt 3']]
+    values = [['Company Name', 'Company URL', 'Scraped and Formatted Homepage Data', 'Output from Prompt 1', 'Output from Prompt 2', 'Output from Prompt 3']]
     
     for i in range(1,len(company_data)):
         
